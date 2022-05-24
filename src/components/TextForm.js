@@ -17,6 +17,25 @@ export default function TextForm(props) {
         setText(event.target.value);
     }
 
+    const handleClearText = (event)=>{
+        //console.log("Clear Text Clicked");
+        let newText = '';
+        setText(newText);
+    }
+
+    const handleSpaceRemove = (event)=>{
+        //console.log("Remove Space Clicked");
+        let newText = text.replaceAll(" ","");
+        setText(newText);
+    }
+
+    const handleOnlyNumbers = (event)=>{
+        //console.log("Get Numbers Clicked");
+        const regex = /[0-9//]/g;
+        const digits = text.match(regex);
+        setText(digits.join());
+    }
+
     const[text, setText] = useState('');
     //setText("new text");
   return (
@@ -28,6 +47,12 @@ export default function TextForm(props) {
         </div>
         <button className="btn btn-primary mx-1"  onClick={handleUpClick} >Convert to UperCase</button>
         <button className="btn btn-primary mx-1" onClick={handleDownClick}>Convert to LowerCase</button> 
+        <button className="btn btn-primary mx-1" onClick={handleClearText}>Clear Text</button> 
+        <button className="btn btn-primary mx-1" onClick={handleSpaceRemove}>Remove Space</button> 
+        <button className="btn btn-primary mx-1" onClick={handleOnlyNumbers}>Get Numbers</button> 
+
+
+
     </div>
     <div className="container my-3">
     <h2>Your text summary</h2>
